@@ -4,7 +4,8 @@
   "author": "Victor Mora",
   "dependencies": {
     "express": "*",
-    "coffee-script": "*"
+    "coffee-script": "*",
+    "ejs": "*"
   },
   "engines": {
     "node": "0.8.x",
