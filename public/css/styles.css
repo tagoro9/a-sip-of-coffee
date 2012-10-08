@@ -4,6 +4,19 @@
 	background-color: #FFF;
 }
 
+.up-tiles div {
+	padding: 5px 10px;
+}
+
+.up-tiles h2 {
+	color: #FFF;
+}
+
+.up-tiles img {
+	float: right;
+	margin: 10px;
+}
+
 .hero-unit img {
 	margin-right: 40px;
 }
