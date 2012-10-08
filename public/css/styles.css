@@ -1,0 +1,18 @@
+.page {
+	width: 940px;
+	margin: auto;
+	background-color: #FFF;
+}
+
+.hero-unit img {
+	margin-right: 40px;
+}
+
+.hero-unit .operations {
+	padding-top: 20px;
+	text-align: center;
+}
+
+#footer div {
+	padding-top: 10px;
+}
