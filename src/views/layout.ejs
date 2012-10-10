@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Javascript by example</title>
+		<!-- Metro UI Css -->
+		<%- css('modern.css') %>
+		<%- css('modern-responsive.css') %>
+		<!-- Site styles -->
+		<%- css('styles.css') %>
+		<!-- Favicon -->
+		<link href="favicon.ico" rel="shortcut icon">
+		<!-- JS files -->
+	 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	 	<%- js('jquery.transit.min.js') %>
+		<%- js('app.js') %>
+	</head>
+	<body>
+		<div class="page">
+			<div class="page-region">
+				<div class="page-region-content">
+					<p class="place-right tertiary-secondary-text">
+						built with 
+						<a class="fg-color-blueLight" href="http://nodejs.org/">Node.js</a>
+					</p>					
+					<h1>
+						Javascript
+						<small>
+							by example
+							<span class="fg-color-blue">v 0.0.1</span>
+						</small>
+					</h1>					
+				</div>
+			</div>
+			<div class="page-region">
+				<div class="page-region-content">
+					<!-- Tiles superiores -->
+					<div id="top-menu" class="grid">
+						<div class="row up-tiles">
+							<div class="span4 bg-color-blue">
+								<a class="upper-menu" href="">
+									<img src="/img/material.png"/>
+									<h2>Material</h2>							
+								</a>
+							</div>
+							<div class="span4 bg-color-blueDark">
+								<a class="upper-menu" href="">
+									<img src="/img/about.png"/>
+									<h2>Sobre esta página</h2>							
+								</a>						
+							</div>
+							<div class="span4 bg-color-purple">
+								<a href="">
+									<img src="/img/github_white.png"/>
+									<h2>Algo de código</h2>							
+								</a>
+							</div>
+						</div>
+					</div>
+					<%- body %>					
+				</div>
+			</div>
+			<!-- Footer -->
+			<div id="footer" class="header-bar">
+				<div class="header-bar-inner">
+					<p class="place-right tertiary-text fg-color-white">
+						2012 - Sistemas y Tecnologías Web - 
+						<a href="" class="fg-color-blueLight">Víctor Mora</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

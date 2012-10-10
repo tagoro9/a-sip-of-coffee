@@ -1,0 +1,84 @@
+.page {
+	width: 940px;
+	margin: auto;
+	background-color: #FFF;
+}
+
+.forward-button {
+    background-image: url('../img/forward-button.png');
+    background-size: cover;
+    display: block;
+    height: 32px;
+    width: 32px;
+}
+
+#top-menu {
+	margin: 0;
+}
+
+.up-tiles div {
+	padding: 5px 10px;
+}
+
+.up-tiles h2 {
+	color: #FFF;
+}
+
+.up-tiles img {
+	float: right;
+	margin: 10px;
+}
+
+.hero-unit img {
+	margin-right: 40px;
+}
+
+.hero-unit .operations {
+	padding-top: 20px;
+	text-align: center;
+}
+
+#carousel {
+	width: 940px;
+	height: 330px;
+	overflow: hidden;
+}
+
+.carousel-controls {
+	margin: 20px 400px;
+	padding-bottom: 10px;
+}
+
+.carousel-controls .back-button {
+	float: left;
+}
+
+.carousel-controls .forward-button {
+	float: right;
+}
+
+.carousel-controls a {
+	cursor: pointer;
+	display: inline-block;
+	outline: none;
+}
+
+.carousel-elem {
+	display: inline-block;
+	width: 940px;
+	height: 330px;	
+	float: left;
+}
+
+.carousel-elem:not(.first) {
+	margin-left: 100px;
+}
+
+#carousel-container {
+	width: 18000px;
+	height: 330px;
+}
+
+#footer div {
+	padding-top: 10px;
+}

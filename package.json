@@ -5,7 +5,8 @@
   "dependencies": {
     "express": "*",
     "coffee-script": "*",
-    "ejs": "*"
+    "ejs": "*",
+    "connect-assets": "*"
   },
   "engines": {
     "node": "0.8.x",

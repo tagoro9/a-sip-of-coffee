@@ -3,12 +3,16 @@
 	<head>
 		<title>Javascript by example</title>
 		<!-- Metro UI Css -->
-		<link rel="stylesheet" type="text/css" href="/css/modern.css">
-		<link rel="stylesheet" type="text/css" href="/css/modern-responsive.css">
+		<%- css('modern.css') %>
+		<%- css('modern-responsive.css') %>
 		<!-- Site styles -->
-		<link rel="stylesheet" type="text/css" href="/css/styles.css">
+		<%- css('styles.css') %>
 		<!-- Favicon -->
 		<link href="favicon.ico" rel="shortcut icon">
+		<!-- JS files -->
+	 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	 	<%- js('jquery.transit.min.js') %>
+		<%- js('app.js') %>
 	</head>
 	<body>
 		<div class="page">
@@ -30,16 +34,16 @@
 			<div class="page-region">
 				<div class="page-region-content">
 					<!-- Tiles superiores -->
-					<div class="grid">
+					<div id="top-menu" class="grid">
 						<div class="row up-tiles">
 							<div class="span4 bg-color-blue">
-								<a href="">
+								<a class="upper-menu" href="">
 									<img src="/img/material.png"/>
 									<h2>Material</h2>							
 								</a>
 							</div>
 							<div class="span4 bg-color-blueDark">
-								<a href="">
+								<a class="upper-menu" href="">
 									<img src="/img/about.png"/>
 									<h2>Sobre esta página</h2>							
 								</a>						
@@ -53,24 +57,66 @@
 						</div>
 					</div>
 					<!-- Introduccion a coffeescript -->
-					<div class="hero-unit">
-						<img class="place-left" src="/img/coffeescript.png"/>
-						<h1>Coffeescript
-							<small>introducción</small>
-						</h1>
-						<div class="span8 offset3">
-							<div>
-								<blockquote class="place-right">
-									CoffeeScript es un lenguaje de programación que se compila a JavaScript. El lenguaje añade azúcar sintáctico inspirado en Ruby, Python y Haskell2 para mejorar la brevedad y la legibilidad de JavaScript, y añade características más sofisticadas, como la comprensión de listas y la coincidencia de patrones.
-								</bockquote>
+					<div id="carousel">
+						<div id="carousel-container">
+							<div class="carousel-elem first hero-unit">
+								<img class="place-left" src="/img/coffeescript.png"/>
+								<h1>Coffeescript
+									<small>introducción</small>
+								</h1>
+								<div class="span8 offset3">
+									<div>
+										<blockquote class="place-right">
+											CoffeeScript es un lenguaje de programación que se compila a JavaScript. El lenguaje añade azúcar sintáctico inspirado en Ruby, Python y Haskell2 para mejorar la brevedad y la legibilidad de JavaScript, y añade características más sofisticadas, como la comprensión de listas y la coincidencia de patrones.
+										</bockquote>
+									</div>
+									<div class="operations">
+										<button class="default start-show" data-showId="coffee" data-url="">Iniciar presentación</button>
+										<button class="default" data-url="">Cuestionario</button>
+										<button class="default" data-url="">Recursos</button>
+									</div>							
+								</div>
 							</div>
-							<div class="operations">
-								<button class="default" data-url="">Iniciar presentación</button>
-								<button class="default" data-url="">Cuestionario</button>
-								<button class="default" data-url="">Recursos</button>
+							<div class="carousel-elem hero-unit">
+								<img class="place-left" src="/img/nodejs.png"/>
+								<h1>Node.js <small>introducción</small></h1>
+								<div class="span8 offset3">
+									<div>
+										<blockquote class="place-right">
+											Node.js es un entorno de programación en la capa del servidor basado en el lenguaje de programación Javascript, con I/O de datos en una arquitectura orientada a eventos, y basado en el motor Javascript V8. Fue creado con el enfoque de ser útil en la creación de programas de red altamente escalables.
+										</bockquote>
+									</div>
+									<div class="operations">
+										<button disabled="disabled" data-showId="node" data-url="">Iniciar presentación</button>
+										<button disabled="disabled" data-url="">Cuestionario</button>
+										<button disabled="disabled" data-url="">Recursos</button>
+									</div>							
+								</div>								
+							</div>
+							<div class="carousel-elem hero-unit">
+								<img class="place-left" src="/img/playing.jpeg"/>
+								<h1>Jugando con <small>Node.js</small></h1>
+								<div class="span8 offset3">
+									<div>
+										<blockquote class="place-right">
+											Una vez se han dado los primeros pasos tanto con Coffeescript como con Node.js
+											en esta última presentación se procederá a realizar una aplicación de ejemplo
+											que resuma todo lo aprendido.
+										</bockquote>
+									</div>
+									<div class="operations">
+										<button disabled="disabled" data-showId="playing-with-node" data-url="">Iniciar presentación</button>
+										<button disabled="disabled" data-url="">Cuestionario</button>
+										<button disabled="disabled" data-url="">Recursos</button>
+									</div>							
+								</div>								
 							</div>							
 						</div>
-					</div>						
+					</div>
+					<div class="carousel-controls">
+						<a data-dir="back" href="#" class="back-button"></a>
+						<a data-dir="forward" class="forward-button" href="#"></a>
+					</div>					
 				</div>
 			</div>
 			<!-- Footer -->
