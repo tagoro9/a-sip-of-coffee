@@ -34,48 +34,80 @@
 		<h2>Introducción a <small>CoffeeScript</small><span class="right">Contenido</span></h2>
 		<div class="tiles">
 			<div class="tile double bg-color-blue">
+				<div class="tile-content icon"><img src="/img/what.png"/></div>
 				<div class="brand">
 					<h3>¿Qué es Javascript?</h3>
 				</div>
 			</div>
 			<div class="tile bg-color-blueDark">
+				<div class="tile-content icon"><img src="/img/history.png"/></div>
 				<div class="brand">
 					<h3>Historia</h3>
 				</div>
 			</div>			
 			<div class="tile double bg-color-purple">
+				<div class="tile-content icon"><img src="/img/what-to-do.png"/></div>
 				<div class="brand">
 					<h3>¿Qué se puede hacer?</h3>
 				</div>
 			</div>	
 			<div class="tile bg-color-yellow">
+				<div class="tile-content icon"><img src="/img/coffeescript_logo_white.png"/></div>
 				<div class="brand">
 					<h3>CoffeeScript</h3>
 				</div>
 			</div>
 			<div class="tile bg-color-pink">
+				<div class="tile-content icon"><img src="/img/sintaxis.png"/></div>
 				<div class="brand">
 					<h3>Sintaxis</h3>
 				</div>
 			</div>	
 			<div class="tile bg-color-green">
+				<div class="tile-content icon"><img src="/img/install.png"/></div>
 				<div class="brand">
 					<h3>Instalación</h3>
 				</div>
 			</div>	
 			<div class="tile bg-color-greenDark">
+				<div class="tile-content icon"><img src="/img/compile.png"/></div>
 				<div class="brand">
 					<h3>Compilar</h3>
 				</div>
 			</div>				
 			<div class="tile bg-color-darken">
+				<div class="tile-content icon"><img src="/img/examples.png"/></div>
 				<div class="brand">
 					<h3>Ejemplos</h3>
 				</div>
 			</div>							
 		</div>
 	</div>
+    <div id="whatIs" class="step" data-x="8300" data-y="3000" data-rotate="-90" data-rotate-y="40" data-scale="4">
+        <p>es un lenguaje <b class="positioning">dinámico</b>, <b class="rotating">interpretado</b> y de tipado <b class="positioningDown">débil</b></p>
+    </div>	
+    <div id="paradigms" class="step" data-x="8400" data-y="6000" data-rotate="-180" data-rotate-y="40" data-scale="4">
+    	<p>Permite programación orientada a <b>objetos</b>, <b>imperativa</b> o <b>funcional</b></p>
+    	<p><b>No</b> es de propósito general</p>
+	</div>
+	<div id="jsSyntax" class="step" data-x="12500" data-y="6000" data-scale="1" data-rotate-y="40" data-rotate="-45">
+			personas = ["Victor", "Juan", "Pedro", "Luis"];<br/>
 
+			for (_i = 0, _len = personas.length; _i < _len; _i++) {<br/>
+			  persona = personas[_i];<br/>
+			  console.log(persona);<br/>
+			}			
+	</div>
+	<div id="stats" data-x="13700" data-y="3000" data-rotate="-90" data-rotate-y="40" data-scale="4" class="step">
+		<img src="/img/stats.jpg"/>
+	</div>
+	<div id="stats2" data-x="17000" data-y="3000" data-rotate="-90" data-rotate-y="40" data-scale="2" class="step">
+	</div>
+	<div id="stats3" data-x="20000" data-y="3000" data-rotate="-90" data-rotate-y="40" data-scale="1" class="step">
+	</div>	
+	<div id="graphics" class="step" data-x="17000" data-y="5600" data-rotate-y="40" data-scale="4" data-rotate="0">
+		<img src="/img/graphs.png"/>
+	</div>
 </div>
 <%- js('impress.js')%>
 <script>impress().init();</script>
