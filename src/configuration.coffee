@@ -9,5 +9,6 @@ app.configure ->
         app.use express.static("#{__dirname}/../public")
         app.use express.favicon("#{__dirname}/../public/favicon.ico")
         app.use express.errorHandler(dumpExceptions: true, showStack: true)
+        app.engine 'ejs', engine
         app.set 'views', "#{__dirname}/views"
         app.set 'view engine', 'ejs'

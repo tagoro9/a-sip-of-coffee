@@ -1,6 +1,7 @@
 #Setup express.js
 global.express = require 'express'
 global.app = express()
+global.engine = require 'ejs-locals'
 require "#{__dirname}/src/configuration"
 
 #Set up a routing for pages

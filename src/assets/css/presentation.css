@@ -1,0 +1,50 @@
+body {
+	background: #FFF;
+}
+
+h1 {
+	font-size: 150px;
+	line-height: 120px;
+}
+
+h2 {
+	font-size: 40px;
+}
+
+.center {
+	margin: auto;
+	text-align: center;
+}
+
+.right {
+	float: right;
+}
+
+.past {
+
+}
+
+.step {
+    position: relative;
+    width: 900px;
+    padding: 40px;
+    margin: 20px auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+
+    font-size: 48px;
+    line-height: 1.5;
+}
+
+.tiles {
+	margin-top: 30px;
+}
+
+.tile .brand {
+	padding-bottom: 5px;
+	margin-left: 10px;
+}

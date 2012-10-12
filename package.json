@@ -6,7 +6,8 @@
     "express": "*",
     "coffee-script": "*",
     "ejs": "*",
-    "connect-assets": "*"
+    "connect-assets": "*",
+    "ejs-locals": "*"
   },
   "engines": {
     "node": "0.8.x",

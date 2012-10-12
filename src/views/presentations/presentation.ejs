@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Introducción a CoffeeScript</title>
+    <link href="/css/impress-demo.css" rel="stylesheet" />
+	<!-- Metro UI Css -->
+	<%- css('modern.css') %>
+	<%- css('modern-responsive.css') %>   
+	<!-- Presentation styles -->
+	<%- css('presentation.css') %>
+    <!--<%- css('impress-demo.css') %>    -->
+    
+    <link rel="shortcut icon" href="favicon.png" />
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>Tu navegador <b>no posee las características requeridas</b> para ver la presentación, así que se presenta
+    	una versión simplificada de la misma</p>
+    <p>Para tener una mejor experiencia, por favor utiliza <b>Chrome</b>, <b>Safari</b> o <b>Firefox</b>.</p>
+</div>
+
+<div id="impress">
+
+	<div id="start" class="step" data-x="0" data-scale="8" data-y="0">
+		<h1>Introducción a <small>CoffeeScript</small></h1>
+		<p class="center"><img src="/img/coffeescript_logo.png"/></p>
+	</div>
+	<div id="content" class="step" data-x="10200" data-y="0" data-scale="8" data-rotate-y="40">
+		<h2>Introducción a <small>CoffeeScript</small><span class="right">Contenido</span></h2>
+		<div class="tiles">
+			<div class="tile double bg-color-blue">
+				<div class="brand">
+					<h3>¿Qué es Javascript?</h3>
+				</div>
+			</div>
+			<div class="tile bg-color-blueDark">
+				<div class="brand">
+					<h3>Historia</h3>
+				</div>
+			</div>			
+			<div class="tile double bg-color-purple">
+				<div class="brand">
+					<h3>¿Qué se puede hacer?</h3>
+				</div>
+			</div>	
+			<div class="tile bg-color-yellow">
+				<div class="brand">
+					<h3>CoffeeScript</h3>
+				</div>
+			</div>
+			<div class="tile bg-color-pink">
+				<div class="brand">
+					<h3>Sintaxis</h3>
+				</div>
+			</div>	
+			<div class="tile bg-color-green">
+				<div class="brand">
+					<h3>Instalación</h3>
+				</div>
+			</div>	
+			<div class="tile bg-color-greenDark">
+				<div class="brand">
+					<h3>Compilar</h3>
+				</div>
+			</div>				
+			<div class="tile bg-color-darken">
+				<div class="brand">
+					<h3>Ejemplos</h3>
+				</div>
+			</div>							
+		</div>
+	</div>
+
+</div>
+<%- js('impress.js')%>
+<script>impress().init();</script>
+
+</body>
+</html>
