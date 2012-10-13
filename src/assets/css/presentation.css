@@ -11,6 +11,12 @@ h2 {
 	font-size: 40px;
 }
 
+ul li {
+	font-size: 40px;
+	line-height: 40px;
+	padding: 10px;
+}
+
 .center {
 	margin: auto;
 	text-align: center;
@@ -124,4 +130,27 @@ h2 {
 
 #stats.past {
 	opacity: 1;
+}
+
+#jsSyntax pre {
+    background-color: #FFF;
+    border: none;
+    display: block;
+    font-size: 10pt;
+    line-height: 14pt;
+    margin: 0;
+    padding: 10px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;	
+}
+
+#jsSyntax pre code {
+	margin-left: 150px;
+    -webkit-transform: scale(3);
+    -moz-transform:    scale(3);
+    -ms-transform:     scale(3);
+    -o-transform:      scale(3);
+    transform:         scale(3);	
+    font-family: arial;
 }
