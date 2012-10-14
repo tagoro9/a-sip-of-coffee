@@ -1,30 +1,58 @@
 #Cell width
 cw = 10
 
-class Food
+class Canvas
+
+	constructor: (id = "canvas") ->
+		$(document).ready () =>
+			canvas = $("##{id}")[0]
+			@canvas = canvas.getContext "2d"
+			@w = $('#canvas').width() #Canvas width
+			@h = $('#canvas').height() #Canvas height
+			@reset()	
+
+	reset: () ->
+		@canvas.fillStyle = "#CCC";
+		@canvas.fillRect(0, 0, @w, @h);
+		@canvas.strokeRect(0, 0, @w, @h);		
+
+	paint_cell: (x,y, color) ->
+		@canvas.fillStyle = color
+		@canvas.fillRect x*cw, y*cw, cw, cw
+		@canvas.strokeStyle = "#FFF"
+		@canvas.strokeRect x*cw, y*cw, cw, cw
+
+canvas = new Canvas()		
+
+class Point
+
+	constructor: (@x ,@y) ->
+	paint: (color = "#00F") ->
+		canvas.paint_cell @x,@y,color
+
+class Food extends Point
 
 	constructor: (w,h) -> #Get random coordintates for the food
 		@x = Math.round(Math.random()*(w-cw)/cw)
 		@y = Math.round(Math.random()*(h-cw)/cw)
 
+
 class Snake
 
 	constructor: (length = 4) ->
-		@array = ({x: i, y: 0} for i in [length..0] by -1)
+		@array = (new Point(i,0) for i in [length..0] by -1)
 
 	head: () ->
 		return @array[0]
+
+	paint: () ->
+		point.paint() for point in @array
 
 class Game
 
 	constructor: () ->
 		$(document).ready () =>
-			canvas = $('#canvas')[0]
-			@canvas = canvas.getContext "2d"
-			@w = $('#canvas').width() #Canvas width
-			@h = $('#canvas').height() #Canvas height
-			#Keyboard controls (w,s,a,d)
-			$(document).keydown (e) =>
+			$(document).keydown (e) => 	#Keyboard controls (w,s,a,d)
 				switch e.which
 					when 65 then @d = "left" if @d != "right" 
 					when 87 then @d = "up" if @d != "down"
@@ -36,7 +64,7 @@ class Game
 	init: () ->
 		@d = "right" #Initial direction
 		@snake = new Snake()
-		@food = new Food(@w,@h)
+		@food = new Food(canvas.w,canvas.h)
 		@score = 0
 		clearInterval @game_loop if @game_loop?
 		@game_loop = setInterval (()=> @paint()), 60 #This determines the snake speed
@@ -45,12 +73,6 @@ class Game
 		for i in [0...@snake.array.length]
 			return true if @snake.array[i].x is x and @snake.array[i].y is y
 		return false
-
-	paint_cell: (x,y, color = "#00F") ->
-		@canvas.fillStyle = color
-		@canvas.fillRect x*cw, y*cw, cw, cw
-		@canvas.strokeStyle = "#FFF"
-		@canvas.strokeRect x*cw, y*cw, cw, cw
 
 	next_move: () ->
 		#Get the head pos
@@ -63,11 +85,11 @@ class Game
 			when "down" then ny++	
 		#If the snake hits the wall
 		switch nx
-			when -1 then nx = @w/cw-1
-			when @w/cw then nx = 0
+			when -1 then nx = canvas.w/cw-1
+			when canvas.w/cw then nx = 0
 		switch ny
-			when -1 then ny = @h/cw-1
-			when @h/cw then ny = 0	
+			when -1 then ny = canvas.h/cw-1
+			when canvas.h/cw then ny = 0	
 		x: nx, y: ny				
 
 	play: (move) ->
@@ -75,9 +97,9 @@ class Game
 		return false if @check_collision move.x,move.y		
 		#When the snake eats the food
 		if move.x == @food.x and move.y == @food.y
-			tail = x: move.x, y:move.y
+			tail = new Point move.x, move.y
 			@score++
-			@food = new Food(@w,@h)
+			@food = new Food(canvas.w,canvas.h)
 		else
 			tail = @snake.array.pop()
 			tail.x = move.x
@@ -86,19 +108,13 @@ class Game
 		return true	
 
 	paint: () ->
-		#Paint the canvas
-		@canvas.fillStyle = "#CCC";
-		@canvas.fillRect(0, 0, @w, @h);
-		@canvas.strokeRect(0, 0, @w, @h);
+		canvas.reset() #Reset canvas
 		#Get snake's next move
-		move = @next_move()
-		return @init() unless @play move
-		#Paint the snake
-		for i in [0...@snake.array.length]
-			@paint_cell @snake.array[i].x,@snake.array[i].y
+		return @init() unless @play @next_move()
+		@snake.paint()
 		#Paint the food
-		@paint_cell @food.x, @food.y
+		@food.paint()
 		#Paint score
-		@canvas.fillText "Score: #{@score}", 5, @h-5		
+		canvas.canvas.fillText "Score: #{@score}", 5, canvas.h-5
 
 game = new Game()
