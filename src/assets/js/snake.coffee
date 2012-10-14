@@ -30,8 +30,15 @@ $(document).ready () ->
 			when "left" then nx--
 			when "up" then ny--
 			when "down" then ny++
-		#If the snake hits the wall restart the game
-		return init() if nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || check_collision(nx, ny, snake_array)
+		#If the snake hits the wall
+		switch nx
+			when -1 then nx = w/cw-1
+			when w/cw then nx = 0
+		switch ny
+			when -1 then ny = h/cw-1
+			when h/cw then ny = 0
+		#If the snake hits itself
+		return init() if check_collision(nx,ny,snake_array)
 		#When the snake eats the food
 		if nx == food.x and ny == food.y
 			tail = x: nx, y:ny
@@ -44,8 +51,7 @@ $(document).ready () ->
 		snake_array.unshift tail
 		#Paint the snake
 		for i in [0...snake_array.length]
-			c = snake_array[i]
-			paint_cell c.x,c.y
+			paint_cell snake_array[i].x,snake_array[i].y
 		#Paint the food
 		paint_cell food.x, food.y
 		#Paint score
