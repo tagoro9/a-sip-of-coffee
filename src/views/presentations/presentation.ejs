@@ -5,182 +5,24 @@
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Introducción a CoffeeScript</title>
-    <link href="/css/impress-demo.css" rel="stylesheet" />
+    <%- css('impress-demo.css') %> 
 	<!-- Metro UI Css -->
 	<%- css('modern.css') %>
 	<%- css('modern-responsive.css') %>   
 	<!-- Presentation styles -->
 	<%- css('presentation.css') %>
-    <!--<%- css('impress-demo.css') %>    -->
     <!-- Jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <!-- Snake -->
+    <%- js('snake.js') %>    
     <!-- Highlight.js -->
-    <%- css('highlight/googlecode.css') %>
+    <%- css('highlight/zenburn.css') %>
     <%- js('highlight.pack.js') %>
     <script>hljs.initHighlightingOnLoad();</script>
     <link rel="shortcut icon" href="favicon.png" />
 </head>
 
 <body class="impress-not-supported">
-
-<!-- QUITA ESTO DE AQUI -->
-<script type="text/javascript">
-$(document).ready(function(){
-	//Canvas stuff
-	var canvas = $("#canvas")[0];
-	var ctx = canvas.getContext("2d");
-	var w = $("#canvas").width();
-	var h = $("#canvas").height();
-	
-	//Lets save the cell width in a variable for easy control
-	var cw = 10;
-	var d;
-	var food;
-	var score;
-	
-	//Lets create the snake now
-	var snake_array; //an array of cells to make up the snake
-	
-	function init()
-	{
-		d = "right"; //default direction
-		create_snake();
-		create_food(); //Now we can see the food particle
-		//finally lets display the score
-		score = 0;
-		
-		//Lets move the snake now using a timer which will trigger the paint function
-		//every 60ms
-		if(typeof game_loop != "undefined") clearInterval(game_loop);
-		game_loop = setInterval(paint, 60);
-	}
-	init();
-	
-	function create_snake()
-	{
-		var length = 5; //Length of the snake
-		snake_array = []; //Empty array to start with
-		for(var i = length-1; i>=0; i--)
-		{
-			//This will create a horizontal snake starting from the top left
-			snake_array.push({x: i, y:0});
-		}
-	}
-	
-	//Lets create the food now
-	function create_food()
-	{
-		food = {
-			x: Math.round(Math.random()*(w-cw)/cw), 
-			y: Math.round(Math.random()*(h-cw)/cw), 
-		};
-		//This will create a cell with x/y between 0-44
-		//Because there are 45(450/10) positions accross the rows and columns
-	}
-	
-	//Lets paint the snake now
-	function paint()
-	{
-		//To avoid the snake trail we need to paint the BG on every frame
-		//Lets paint the canvas now
-		ctx.fillStyle = "#CCC";
-		ctx.fillRect(0, 0, w, h);
-		/*ctx.strokeStyle = "black";*/
-		ctx.strokeRect(0, 0, w, h);
-		
-		//The movement code for the snake to come here.
-		//The logic is simple
-		//Pop out the tail cell and place it infront of the head cell
-		var nx = snake_array[0].x;
-		var ny = snake_array[0].y;
-		//These were the position of the head cell.
-		//We will increment it to get the new head position
-		//Lets add proper direction based movement now
-		if(d == "right") nx++;
-		else if(d == "left") nx--;
-		else if(d == "up") ny--;
-		else if(d == "down") ny++;
-		
-		//Lets add the game over clauses now
-		//This will restart the game if the snake hits the wall
-		//Lets add the code for body collision
-		//Now if the head of the snake bumps into its body, the game will restart
-		if(nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || check_collision(nx, ny, snake_array))
-		{
-			//restart game
-			init();
-			//Lets organize the code a bit now.
-			return;
-		}
-		
-		//Lets write the code to make the snake eat the food
-		//The logic is simple
-		//If the new head position matches with that of the food,
-		//Create a new head instead of moving the tail
-		if(nx == food.x && ny == food.y)
-		{
-			var tail = {x: nx, y: ny};
-			score++;
-			//Create new food
-			create_food();
-		}
-		else
-		{
-			var tail = snake_array.pop(); //pops out the last cell
-			tail.x = nx; tail.y = ny;
-		}
-		//The snake can now eat the food.
-		
-		snake_array.unshift(tail); //puts back the tail as the first cell
-		
-		for(var i = 0; i < snake_array.length; i++)
-		{
-			var c = snake_array[i];
-			//Lets paint 10px wide cells
-			paint_cell(c.x, c.y);
-		}
-		
-		//Lets paint the food
-		paint_cell(food.x, food.y);
-		//Lets paint the score
-		var score_text = "Score: " + score;
-		ctx.fillText(score_text, 5, h-5);
-	}
-	
-	//Lets first create a generic function to paint cells
-	function paint_cell(x, y)
-	{
-		ctx.fillStyle = "blue";
-		ctx.fillRect(x*cw, y*cw, cw, cw);
-		ctx.strokeStyle = "white";
-		ctx.strokeRect(x*cw, y*cw, cw, cw);
-	}
-	
-	function check_collision(x, y, array)
-	{
-		//This function will check if the provided x/y coordinates exist
-		//in an array of cells or not
-		for(var i = 0; i < array.length; i++)
-		{
-			if(array[i].x == x && array[i].y == y)
-			 return true;
-		}
-		return false;
-	}
-	
-	//Lets add the keyboard controls now
-	$(document).keydown(function(e){
-		var key = e.which;
-		//We will add another clause to prevent reverse gear
-		if(key == "65" && d != "right") d = "left";
-		else if(key == "87" && d != "down") d = "up";
-		else if(key == "68" && d != "left") d = "right";
-		else if(key == "83" && d != "up") d = "down";
-		//The snake is now keyboard controllable
-	})
-})
-</script>
-
 
 <div class="fallback-message">
     <p>Tu navegador <b>no posee las características requeridas</b> para ver la presentación, así que se presenta
@@ -292,6 +134,66 @@ $(document).ready(function(){
 	</div>	
 	<div id="graphics" class="step" data-x="17000" data-y="5600" data-rotate-y="40" data-scale="4" data-rotate="0">
 		<img src="/img/graphs.png"/>
+	</div>
+	<!-- Let's start with coffeescript -->
+	<div id="coffeeStart" class="step" data-scale="8">
+	</div>
+	<div id="coffee" class="step slide" data-x="" data-y="1500" data-scale="0.2">
+		<h2>¿Qué es CoffeeScript?</h2>
+		<p class="center">
+			<img src="/img/coffeescript_logo.png"/>
+		</p>
+		<p>
+			Es un lenguaje nacido en 2009 que se compila a Javascript. Posee una sintaxis
+			parecida a Ruby o Python.
+			<br/>
+		</p>
+		<pre class="coffee">
+			<code class="coffeescript">
+				greet = (person = "world") ->
+					console.log "Hello #{person}"
+				greet "class"
+			</code>
+		</pre>
+		<p>Su popularidad no ha dejado de crecer</p>
+	</div>
+	<div class="step" data-x="45" data-y="1528" data-scale="0.08">
+		<pre class="coffee">
+			<code class="javascript">
+				var greet;
+				greet = function(person) {
+				  if (person == null) {
+				    person = "world";
+				  }
+				  return console.log("Hello " + person);
+				};
+				greet("class");			
+			</code>
+		</pre>
+	</div>
+	<div id="coffee2" class="step slide" data-x="200" data-y="1500" data-scale="0.2">
+		<table>
+			<thead><tr><th>Operadores lógicos</th></tr></thead>
+			<tbody>
+				<tr><td>== is</td></tr>
+				<tr><td>!= isnt</td></tr>
+				<tr><td>not</td></tr>
+				<tr><td>or</td></tr>
+				<tr><td>true yes on</td></tr>
+				<tr><td>false no off</td></tr>
+			</tbody>
+		</table>
+		<pre class="coffee">
+			<code class="coffeescript">
+				switchOff light if light is on
+				switchOff light unless light is off
+
+				if 2 < age < 5
+					alert "Yes!"
+				else
+					alert "Too old"
+			</code>
+		</pre>		
 	</div>
 </div>
 <%- js('impress.js')%>

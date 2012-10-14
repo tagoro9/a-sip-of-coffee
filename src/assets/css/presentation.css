@@ -17,6 +17,19 @@ ul li {
 	padding: 10px;
 }
 
+.slide {
+	background-color: #EEE;
+}
+
+.slide table {
+	margin: 0;
+}
+
+.slide td, .slide th {
+	font-size: 40px;
+	line-height: 40px;
+}
+
 .center {
 	margin: auto;
 	text-align: center;
@@ -49,6 +62,15 @@ ul li {
 .step p {
 	font-size: 70px;
 	line-height: 100px;
+}
+
+.slide h2 {
+	margin-bottom: 40px;
+}
+
+.slide p {
+	font-size: 40px;
+	line-height: 40px;
 }
 
 .tiles {
@@ -132,8 +154,12 @@ ul li {
 	opacity: 1;
 }
 
-#jsSyntax pre {
-    background-color: #FFF;
+#start.past {
+	opacity: 1;
+}
+
+pre {
+    background:none;
     border: none;
     display: block;
     font-size: 10pt;
@@ -143,6 +169,12 @@ ul li {
     white-space: pre-wrap;
     word-break: break-all;
     word-wrap: break-word;	
+}
+
+pre.coffee code {
+	border-radius: 10px;
+	font-size: 20px;
+	line-height: 25px;	
 }
 
 #jsSyntax pre code {
