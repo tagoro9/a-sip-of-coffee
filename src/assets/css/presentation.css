@@ -68,9 +68,39 @@ ul li {
 	margin-bottom: 40px;
 }
 
+.slide h2.short {
+	margin-bottom: 20px;
+}
+
+.slide a {
+	font-size: 40px;
+}
+
+.slide ul {
+	list-style-type: none;
+}
+
+.slide ul.styled {
+	list-style-type: disc;
+	margin-left: 30%;
+}
+
+.slide ul.short {
+	margin-left: 6%;
+	width: 40%;
+	float: left;
+	margin-top: 5%;
+	margin-bottom: 10%;	
+}
+
 .slide p {
 	font-size: 40px;
 	line-height: 40px;
+}
+
+.slide p.small {
+	font-size: 20px;
+	line-height: 20px;	
 }
 
 .tiles {
@@ -156,6 +186,10 @@ ul li {
 
 #start.past {
 	opacity: 1;
+}
+
+#thanks h2 {
+	font-size: 100px;
 }
 
 pre {

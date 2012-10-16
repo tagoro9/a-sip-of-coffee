@@ -93,8 +93,8 @@
         <p>es un lenguaje <b class="positioning">dinámico</b>, <b class="rotating">interpretado</b> y de tipado <b class="positioningDown">débil</b></p>
     </div>	
     <div id="paradigms" class="step" data-x="8400" data-y="6000" data-rotate="-180" data-rotate-y="40" data-scale="4">
-    	<p>Permite programación orientada a <b>objetos</b>, <b>imperativa</b> o <b>funcional</b></p>
-    	<p><b>No</b> es de propósito general</p>
+    	<p>Permite "programación orientada a <b>objetos</b>", <b>imperativa</b> o <b>funcional</b></p>
+    	<!--<p><b>No</b> es de propósito general</p>-->
 	</div>
 	<div id="jsSyntax" class="step" data-x="12500" data-y="6000" data-scale="1" data-rotate-y="40" data-rotate="-45">
 		<div>
@@ -171,14 +171,14 @@
 			</code>
 		</pre>
 	</div>
-	<div id="coffee2" class="step slide" data-x="200" data-y="1500" data-scale="0.2">
+	<div id="coffee-operators" class="step slide" data-x="200" data-y="1500" data-scale="0.2">
 		<table>
 			<thead><tr><th>Operadores lógicos</th></tr></thead>
 			<tbody>
 				<tr><td>== is</td></tr>
 				<tr><td>!= isnt</td></tr>
 				<tr><td>not</td></tr>
-				<tr><td>or</td></tr>
+				<tr><td>or and</td></tr>
 				<tr><td>true yes on</td></tr>
 				<tr><td>false no off</td></tr>
 			</tbody>
@@ -194,6 +194,153 @@
 					alert "Too old"
 			</code>
 		</pre>		
+	</div>
+	<div id="coffee-switch" class="step slide" data-x="400" data-y="1500" data-scale="0.2">
+		<h2>Sentencia switch</h2>
+		<pre class="coffee">
+			<code class="coffeescript">
+				message = switch variable
+					when 1 then "Number 1"
+					when 2 then "Number 2"
+					when 3 then "Number 3"
+					else "No number"
+			</code>
+		</pre>
+		<h2 class="short">Operador existencial</h2>
+		<pre class="coffee">
+			<code class="coffeescript">
+				alert "Exists" if message?
+				message ?= "Empty"
+
+				#Solo llamar a una funcion si existe
+				message.something?()
+			</code>
+		</pre>
+	</div>
+	<div id="coffee-arrays" class="step slide" data-x="600" data-y="1500" data-scale="0.2">
+		<h2 class="short">Arrays, rangos y splats</h2>
+		<pre class="coffee">
+			<code class="coffeescript">
+				rango = [start..end]
+				rango = [start...end]
+				municipios = ["Tacoronte", "La Laguna", "Tegueste"]
+				municipios = [
+					"Tacoronte"
+					"La Laguna"
+					"Agulo"
+				]
+				for municipio in municipios
+					console.log "Municipio: #{municipio}"
+				m_tenerife = (m for m in municipios when m isnt "Agulo")
+				#["Tacoronte", "La Laguna"]
+
+				buscar = (que, lugares...) ->
+					"buscando #{que} en #{lugares.join(',')}"
+
+				buscar "bares", "Tenerife", "La Palma"
+				params = ["tiendas", "Tenerife", "Lanzarote", "La Gomera"]
+				buscar(params...)
+			</code>
+		</pre>
+	</div>	
+	<div id="coffee-hashes" class="step slide" data-x="800" data-y="1500" data-scale="0.2">
+		While y objetos (hashes)
+		<pre class="coffee">
+			<code class="coffeescript">
+				comprar() while dinero > 0
+				while 1
+					alert "Bucle infinito"
+			</code>
+		</pre>
+		<pre class="coffee">
+			<code class="coffeescript">
+			alumno = nombre: "Victor", edad: 21, saludo: -> alert "Oh!"
+			alumnos =
+				victor:
+					edad: 21
+				pepe:
+					edad: 25
+
+	edades = ("#{alumno} tiene #{attr.edad} años" for alumno, attr of alumnos)
+
+			</code>
+		</pre>		
+	</div>	
+	<div id="coffee-classes" class="step slide" data-x="1000" data-y="1500" data-scale="0.2">
+		<h2>Objetos y herencia</h2>
+		<pre class="coffee">
+			<code class="coffeescript">
+				class Animal
+					constructor: (@nombre) ->
+					caminar: (metros) ->
+						alert "#{nombre} camina #{metros} metros"
+
+				class Gato extends Animal
+					caminar: ->
+						alert "miau"
+						super 3
+
+				class Serpiente extends Animal
+					caminar: ->
+						alert "Shhh"
+						super 6
+					morder: ->
+						alert "#{nombre} mordió a su objetivo"
+			</code>
+		</pre>
+	</div>
+	<div id="coffee-install" class="step slide" data-x="1200" data-y="1500" data-scale="0.2">
+		<h2>Instalar coffeescript</h2>
+		<p class="small">Primero hay que descargar la ultima versión de <a href="http://www.nodejs.org">node</a> 
+		y de <a href="http://www.npmjs.org">npm</a> e instalarlas</p>
+		<pre class="coffee">
+			<code class="bash">			
+				npm install -g coffee-script				
+			</code>
+		</pre>		
+		<h2 class="short">¿Cómo compilar? <small>REPL, cakefile...</small></h2>
+		<pre class="coffee">
+			<code class="bash">
+				coffee -c prueba.coffee 				coffee
+				coffee -cw prueba.coffee 			cake
+				coffee -c {src} -o {js}
+				coffee -cw {src} -o {js}
+			</code>
+		</pre>	
+	</div>	
+	<div id="coffee-examples" class="step slide" data-x="1400" data-y="1500" data-scale="0.2">
+		<h2>Ejemplos</h2>
+		<p>
+			En este <a href="http://www.github.com">repositorio</a> se encuentra colgado el código de
+			esta página (cliente y servidor), y también hay una carpeta con ejemplos sencillos:
+		</p>
+		<ul class="styled">
+			<li>Hola mundo</li>
+			<li>Uso de cakefile</li>
+			<li>TDD con jasmine</li>
+			<li>Juego Snake</li>
+		</ul>
+	</div>	
+	<div id="resources"	class="step slide" data-x="1600" data-y="1500" data-scale="0.2">
+		<h2>Recursos <small>y enlaces de interés</small></h2>
+		<ul class="short">
+			<li><a target="_blank" href="http://bartaz.github.com/impress.js/">Impress.js</a></li>
+			<li><a target="_blank" href="http://www.coffeescript.org">CoffeeScript.org</a></li>
+			<li><a target="_blank" href="http://courseware.codeschool.com/coffeescript_slides.pdf">Code School</a></li>
+			<li><a target="_blank" href="">Repositorio</a></li>
+			<li><a target="_blank" href="http://en.wikipedia.org">Wikipedia</a></li>
+		</ul>
+		<ul class="short">
+			<li><a target="_blank" href="http://thecodeplayer.com/walkthrough/html5-game-tutorial-make-a-snake-game-using-html5-canvas-jquery">Tutorial Snake</a></li>
+			<li><a target="_blank" href="http://www.youtube.com/watch?v=QgqVh_KpVKY">ScreenCast</a></li>
+			<li><a target="_blank" href="http://www.youtube.com/watch?v=fdNJiYQ1esc">A shot of CS</a></li>
+			<li><a target="_blank" href="http://www.vogella.com/articles/JavaScript/article.html">Tutorial JS</a></li>	
+			<li><a target="_blank" href="http://www.w3schools.com/js/default.asp">W3 Schools</a></li>
+		</ul>
+		<p class="center">Ponerse a <b>probar</b></p>
+	</div>
+	<div id="thanks" class="step" data-scale="50" data-x="15000" data-y="-5000" data-rotate-y="20">
+		<h2>¡Muchas gracias!</h2>
 	</div>
 </div>
 <%- js('impress.js')%>
