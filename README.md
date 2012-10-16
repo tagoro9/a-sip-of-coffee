@@ -1,3 +1,8 @@
-#  Javascript by example
+#  A sip of coffee
 
-Web con la presentacion acerca de Javascript  de la asignatura de Sistemas y Tecnologias Web.
+Introducción a CoffeeScript y Node.js.
+
+*	Web implementada con node y express que contiene las presentaciones.
+*	Conjunto de ejemplos.
+
+Sistemas y Tecnologías Web.
