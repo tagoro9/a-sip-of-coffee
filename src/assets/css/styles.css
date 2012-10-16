@@ -38,6 +38,18 @@
 	text-align: center;
 }
 
+.tile a {
+	outline: none;
+}
+
+.tile a:focus {
+	-moz-outline-style: none;
+}
+
+.tile a .tile-content h2 {
+	line-height: 33px;
+}
+
 #carousel {
 	width: 940px;
 	height: 330px;
