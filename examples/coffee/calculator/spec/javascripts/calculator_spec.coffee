@@ -1,5 +1,6 @@
 describe "Calculator", ->
 
+	#Antes de cada test crear una instancia de la calculadora
 	beforeEach ->
 		@calculator = new Calculator()
 
@@ -8,6 +9,7 @@ describe "Calculator", ->
 
 	describe "scientific mode", ->
 
+		#Crear una instancia de la calculadora en modo cientifico
 		beforeEach ->
 			@calculator = new Calculator(true)
 
