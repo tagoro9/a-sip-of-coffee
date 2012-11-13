@@ -1,0 +1,12 @@
+{
+	"name": "node-chat",
+	"version": "0.0.1",
+	"dependencies": {
+		"express": "*",
+		"connect-assets": "*",
+		"coffee-script": "*",
+		"ejs": "*",
+		"socket.io": "*"
+	}
+
+}

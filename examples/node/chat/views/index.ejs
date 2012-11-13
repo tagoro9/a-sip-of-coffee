@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Node chat</title>
+	<%- css('/css/bootstrap') %>
+	<%- css('/css/bootstrap-responsive') %>
+	<%- css('/css/bootmetro') %>
+	<%- css('/css/bootmetro-tiles') %>
+	<%- css('/css/bootmetro-charms') %>
+	<%- css('/css/metro-ui-light') %>
+	<%- css('/css/icomoon') %>
+	<%- css('/css/datepicker') %>
+	<%- css('/css/styles') %>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
+	<script src="/socket.io/socket.io.js"></script>
+	<%- js('/application') %>
+</head>
+<body>
+	<header id="nav-bar" class="container-fluid">
+		<div class="row-fluid">
+			<div class="span8">
+				<h1>Node chat</h1>
+			</div>
+			<div id="top-info" class="pull-right">
+				<a id="settings" class="pull-left">
+					<h3>Anonymous</h3>
+					<h4>offline</h4>
+				</a>
+			</div>
+		</div>
+	</header>
+	<section id="chat" class="container-fluid metro">
+		<div class="row-fluid">
+			<div class="span4">
+				<ul id="connected-users">
+				</ul>
+			</div>
+			<div class="span8" id="messages">
+				<div id="log">
+				</div>
+				<form id="chat_form">
+					<textarea id="send-message" placeholder="Write something..."></textarea>
+					<input type="submit" value="send"/>
+				</form>
+			</div>
+			<div class="offset4 span8">
+			</div>
+		</div>
+	</section>
+</body>
+</html>
