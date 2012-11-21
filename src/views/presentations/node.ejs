@@ -122,10 +122,10 @@
 						<div class="left">
 							<h3>Compilar en Linux</h3>
 							<pre style="margin-top: 100px;"><code contenteditable style="font-size: 18px;">
-cd node-vX.X.X
-sudo ./configure
-sudo make
-sudo make install
+	cd node-vX.X.X
+	sudo ./configure
+	sudo make
+	sudo make install
 							</code></pre>							
 						</div>
 					</section>
@@ -136,19 +136,19 @@ sudo make install
 					</section>
 					<section>
 						<pre><code class="coffeescript" contenteditable>
-#Node.js Hello world
-http = require 'http'
-PORT = 8080
+	#Node.js Hello world
+	http = require 'http'
+	PORT = 8080
 
-app = http.createServer (response,request) ->
-	request.end "Hello world"
+	app = http.createServer (response,request) ->
+		request.end "Hello world"
 
-app.listen PORT
-console.log "App listening on port #{PORT}"
-						</code></pre>		
-						<pre><code class="bash" contenteditable>
-$ coffee app.coffee 
-App listening on port 8080
+	app.listen PORT
+	console.log "App listening on port #{PORT}"
+							</code></pre>		
+							<pre><code class="bash" contenteditable>
+	$ coffee app.coffee 
+	App listening on port 8080
 						</code></pre>	
 					</section>
 				</section>
@@ -165,33 +165,33 @@ App listening on port 8080
 					</section>
 					<section>
 						<pre><code class="javascript" contenteditable>
-$(document).ready(function(){
-   alert("Estoy listo");
-});
+	$(document).ready(function(){
+	   alert("Estoy listo");
+	});
 						</code></pre>	
 						<pre><code class="javascript">
-function mySandwich(p1, p2, callback) {
-    alert('Eating my sandwich. It has: ' + p1 + ', ' + p2);
-    callback();
-}
+	function mySandwich(p1, p2, callback) {
+	    alert('Eating my sandwich. It has: ' + p1 + ', ' + p2);
+	    callback();
+	}
 
-mySandwich('ham', 'cheese', function() {
-    alert('Finished eating my sandwich.');
-});							
+	mySandwich('ham', 'cheese', function() {
+	    alert('Finished eating my sandwich.');
+	});							
 						</code></pre>	
 					</section>
 					<section>
 						<h2>blocking y non-blocking</h2>
 						<pre><code class="javascript">
-var contents = fs.readFileSync("chuchu.txt");
-console.log(contents);
-console.log("Hago otra cosa");
+	var contents = fs.readFileSync("chuchu.txt");
+	console.log(contents);
+	console.log("Hago otra cosa");
 						</code></pre>
 						<pre><code class="javascript">
-fs.readFile("chuchu.txt", function(err,contents){
-   console.log(contents);
-});
-console.log("Hago otra cosa");
+	fs.readFile("chuchu.txt", function(err,contents){
+	   console.log(contents);
+	});
+	console.log("Hago otra cosa");
 						</code></pre>						
 					</section>
 					<section>
@@ -207,11 +207,11 @@ console.log("Hago otra cosa");
 					<section>
 						<h2>Módulo Events</h2>
 						<pre><code class="coffeescript">
-EventEmitter = require('events').EventEmitter
-logger = new EventEmitter()
-logger.on 'error', (mensaje) ->
-   console.log "Error: #{mensaje}"
-logger.emit 'error', 'Ups'
+	EventEmitter = require('events').EventEmitter
+	logger = new EventEmitter()
+	logger.on 'error', (mensaje) ->
+	   console.log "Error: #{mensaje}"
+	logger.emit 'error', 'Ups'
 						</code></pre>
 					</section>
 				</section>
@@ -231,32 +231,32 @@ logger.emit 'error', 'Ups'
 					</section>
 					<section>
 						<pre><code class="bash">
-$ npm install -g 'coffee-script'
-$ npm install 'underscore'
+	$ npm install -g 'coffee-script'
+	$ npm install 'underscore'
 						</code></pre>
 						<pre><code class="coffeescript">
-underscore = require 'underscore'
+	underscore = require 'underscore'
 						</code></pre>
 					</section>
 					<section>
 						<h2>Package.json</h2>
 						<pre><code class="javascript">
-{
-   "name": "node-chat",
-   "version": "0.0.1",
-   "dependencies": {
-  "express": "*",
-      "connect-assets": "*",
-      "coffee-script": "*",
-      "ejs": "*",
-      "socket.io": "*"
-   }
-}							
+	{
+	   "name": "node-chat",
+	   "version": "0.0.1",
+	   "dependencies": {
+	  "express": "*",
+	      "connect-assets": "*",
+	      "coffee-script": "*",
+	      "ejs": "*",
+	      "socket.io": "*"
+	   }
+	}							
 						</code></pre>	
 						<pre><code class="bash">
-$ npm install
-$ ls node_modules/
-coffee-script/  connect-assets/  ejs/  express/  socket.io/
+	$ npm install
+	$ ls node_modules/
+	coffee-script/  connect-assets/  ejs/  express/  socket.io/
 						</code></pre>					
 					</section>
 					<section>
@@ -271,95 +271,95 @@ coffee-script/  connect-assets/  ejs/  express/  socket.io/
 					</section>
 					<section>
 						<pre><code class="coffeescript">
-#Simple node chat using web sockets
-PORT = process.env.PORT || 8080
-express = require 'express'
-socket = require 'socket.io'
+	#Simple node chat using web sockets
+	PORT = process.env.PORT || 8080
+	express = require 'express'
+	socket = require 'socket.io'
 
-app = express()
+	app = express()
 
-server = require('http').createServer app
-io = socket.listen server						
+	server = require('http').createServer app
+	io = socket.listen server						
 						</code></pre>
 						<pre><code class="coffeescript">
-#App configuration
-app.configure ->
-   app.use require('connect-assets')()
-   app.use express.static("#{__dirname}/public")
-   app.set 'views', "#{__dirname}/views"
-   app.set 'view engine', 'ejs'		
-#Serve the chat page
-app.get '/', (req,res) ->
-   res.render 'index'
-#Clients array
-clients = []							   					
+	#App configuration
+	app.configure ->
+	   app.use require('connect-assets')()
+	   app.use express.static("#{__dirname}/public")
+	   app.set 'views', "#{__dirname}/views"
+	   app.set 'view engine', 'ejs'		
+	#Serve the chat page
+	app.get '/', (req,res) ->
+	   res.render 'index'
+	#Clients array
+	clients = []							   					
 						</code></pre>
 					</section>
 					<section>
 						<pre><code class="coffeescript">
-#Configure events on the chat
-io.sockets.on 'connection', (client) ->
-   client.on 'message', (data) ->
-      client.broadcast.emit 'message',data
-   client.on 'join', (name) ->
-      client.emit 'connected-users', clients
-      client.set 'name', name
-      clients.push(name)
-      client.broadcast.emit 'joined', name
-   client.on 'disconnect', () ->
-      client.get 'name', (err,name) ->
-         client.broadcast.emit 'logout', name
-         clients.splice clients.indexOf(name),1
-server.listen PORT
-console.log "Server listening on port #{PORT}"										
+	#Configure events on the chat
+	io.sockets.on 'connection', (client) ->
+	   client.on 'message', (data) ->
+	      client.broadcast.emit 'message',data
+	   client.on 'join', (name) ->
+	      client.emit 'connected-users', clients
+	      client.set 'name', name
+	      clients.push(name)
+	      client.broadcast.emit 'joined', name
+	   client.on 'disconnect', () ->
+	      client.get 'name', (err,name) ->
+	         client.broadcast.emit 'logout', name
+	         clients.splice clients.indexOf(name),1
+	server.listen PORT
+	console.log "Server listening on port #{PORT}"										
 						</code></pre>					
 					</section>
 					<section>
 						<pre><code class="coffeescript">
-server = io.connect window.location.hostname
-server.on 'connect', (data) ->
-   name = prompt "Input your name"
-   server.emit 'join', name
-   $('#settings h3').html name
-   $('#settings h4').html "online"
-server.on 'message', (data) ->
-   element = $('&lt;div class="message"&gt;'+data+'&lt;/div&gt;')
-   $('#log').append(element)			
-   $('#log').animate...		
+	server = io.connect window.location.hostname
+	server.on 'connect', (data) ->
+	   name = prompt "Input your name"
+	   server.emit 'join', name
+	   $('#settings h3').html name
+	   $('#settings h4').html "online"
+	server.on 'message', (data) ->
+	   element = $('&lt;div class="message"&gt;'+data+'&lt;/div&gt;')
+	   $('#log').append(element)			
+	   $('#log').animate...		
 
-server.on 'logout', (name) ->
-   $("#user-#{name}").remove()						
+	server.on 'logout', (name) ->
+	   $("#user-#{name}").remove()						
 						</code></pre>
 						<pre><code class="coffeescript">
-server.on 'connected-users', (clients) ->
-   for client in clients
-      $('#connected-users').append...
+	server.on 'connected-users', (clients) ->
+	   for client in clients
+	      $('#connected-users').append...
 
-server.on 'joined', (name) ->
-   $('#connected-users').append...								
+	server.on 'joined', (name) ->
+	   $('#connected-users').append...								
 						</code></pre>
 					</section>
 					<section>
 						<pre><code class="coffeescript">
-$ ->
-#Clear textarea
-$('#send-message').val '' 
-#When a message is sent
-$('#chat_form').submit (e) ->
-   e.preventDefault()
-   send_message = $('#send-message')
-   server.emit 'message', send_message.val()
-   element = $('&lt;div&gt;'+send_message.val()+'&lt;/div&gt;')
-   $('#log').append(element)			
-   $('#log').animate...
-   send_message.val ''						
+	$ ->
+	#Clear textarea
+	$('#send-message').val '' 
+	#When a message is sent
+	$('#chat_form').submit (e) ->
+	   e.preventDefault()
+	   send_message = $('#send-message')
+	   server.emit 'message', send_message.val()
+	   element = $('&lt;div&gt;'+send_message.val()+'&lt;/div&gt;')
+	   $('#log').append(element)			
+	   $('#log').animate...
+	   send_message.val ''						
 						</code></pre>
 						<pre><code class="coffeescript">
-#When enter is pressed
-$('#chat_form').on 'keydown', (key) ->
-   if key.keyCode == 13
-      $(this).submit()
-      key.preventDefault()								
+	#When enter is pressed
+	$('#chat_form').on 'keydown', (key) ->
+	   if key.keyCode == 13
+	      $(this).submit()
+	      key.preventDefault()								
 						</code></pre>
 					</section>
 				</section>
