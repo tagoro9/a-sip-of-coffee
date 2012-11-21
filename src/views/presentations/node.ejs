@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Node.js</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<%- css('reveal.min.css') %> 
+		<%- css('theme/default.css') %> 
+
+		<!-- For syntax highlighting -->
+		<%- css('../lib/css/zenburn.css') %> 
+
+		<%- css('nodePres.css') %>
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Aqui vienen los slides -->
+			<div class="slides">
+
+				<section>
+					<h1>Node.js</h1>
+					<h3>Server side JS</h3>
+					<p>
+						<small>Sistemas y tecnologías web <a href="http://www.twitter.com/vivictormora">Victor Mora</a></small>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>Contenido</h2>
+						<ol>
+							<li class="fragment">¿Qué es node?</li>
+							<li class="fragment">¿Qué se puede hacer con node?</li>
+							<li class="fragment">Instalación</li>
+							<li class="fragment">Hello world</li>
+						</ol>
+					</section>
+					<section>
+						<h2>Contenido</h2>
+						<ol>
+							<li class="fragment">Funcionamiento de node</li>
+							<li class="fragment">Callbacks</li>
+							<li class="fragment">Blocking vs non-blocking</li>
+							<li class="fragment">Eventos</li>
+							<li class="fragment">Módulos y dependencias</li>
+							<li class="fragment">Aplicación de ejemplo</li>
+						</ol>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<img src="/img/nodeWhat.jpg">
+					</section>
+					<section>
+						<p>
+							<a href="http://www.nodejs.org">Node.js</a> es un entorno de programación Javascript en el lado del servidor con un sistema de E/S dirigido por eventos.
+						</p>
+					</section>
+					<section>
+						<img src="http://farm5.staticflickr.com/4088/5163818182_a163592497_z.jpg">
+						<h3>Ryan Dahl</h3>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<img src="/img/what-can-i-do.jpg">
+					</section>
+					<section>
+						<h2>Aplicaciones en tiempo real</h2>
+						<ul>
+							<li>Juegos online</li>
+							<li>Herramientas de colaboración</li>
+							<li>Chats</li>
+							<li>Servicios Web</li>
+							<li>Redes sociales</li>
+							<li>...</li>
+						</ul>
+					</section>
+					<section>
+						<h2>
+							Compañías Utilizando node
+						</h2>
+						<div class="images">
+							<img src="/img/linkedin.png">
+							<img src="/img/trello.png">
+							<img src="/img/yammer.png">
+							<img src="/img/microsoft.png">
+						</div>
+						<a href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">
+							Listado completo de compañías, aplicaciones y proyectos
+						</a>
+					</section>
+				</section>
+				<section>
+					<section>
+						<img src="/img/installNode.jpg" style="width: 70%">
+					</section>
+					<section>
+						<div class="left">
+							<h3>Instalador en Windows</h3>
+							<img src="/img/nodeWindows.png">
+						</div>
+						<div class="left">
+							<h3>Compilar en Linux</h3>
+							<pre style="margin-top: 100px;"><code contenteditable style="font-size: 18px;">
+								cd node-vX.X.X
+								sudo ./configure
+								sudo make
+								sudo make install
+							</code></pre>							
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<img src="/img/helloNode.jpg">
+					</section>
+					<section>
+						<pre><code class="coffeescript" contenteditable>
+								#Node.js Hello world
+								http = require 'http'
+								PORT = 8080
+
+								app = http.createServer (response,request) ->
+									request.end "Hello world"
+
+								app.listen PORT
+								console.log "App listening on port #{PORT}"
+						</code></pre>		
+						<pre><code class="bash" contenteditable>
+							$ coffee app.coffee 
+							App listening on port 8080
+						</code></pre>	
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<img src="/img/insideNode.jpg">
+					</section>
+					<section>
+						<img src="/img/callback.PNG">
+						<p class="fragment">
+							Un callback es una función que es pasada como argumento a otra y que esta última se encargará de ejecutar.
+						</p>				
+					</section>
+					<section>
+						<pre><code class="javascript" contenteditable>
+							$(document).ready(function(){
+							   alert("Estoy listo");
+							});
+						</code></pre>	
+						<pre><code class="javascript">
+							function mySandwich(p1, p2, callback) {
+							    alert('Eating my sandwich. It has: ' + p1 + ', ' + p2);
+							    callback();
+							}
+
+							mySandwich('ham', 'cheese', function() {
+							    alert('Finished eating my sandwich.');
+							});							
+						</code></pre>	
+					</section>
+					<section>
+						<h2>blocking y non-blocking</h2>
+						<pre><code class="javascript">
+							var contents = fs.readFileSync("chuchu.txt");
+							console.log(contents);
+							console.log("Hago otra cosa");
+						</code></pre>
+						<pre><code class="javascript">
+							fs.readFile("chuchu.txt", function(err,contents){
+							   console.log(contents);
+							});
+							console.log("Hago otra cosa");
+						</code></pre>						
+					</section>
+					<section>
+						<h2>Threads <small>vs.</small> Events</h2>
+						<img src="/img/threadsVSevents.jpg" style="width: 70%">
+					</section>
+					<section><img src="/img/reqssec.png"></section>
+					<section><img src="/img/memory.png"></section>					
+					<section>
+						<img src="/img/eventLoop.jpg" style="width: 50%">
+					</section>
+					<section><img src="/img/eventos.jpg"></section>
+					<section>
+						<h2>Módulo Events</h2>
+						<pre><code class="coffeescript">
+							EventEmitter = require('events').EventEmitter
+							logger = new EventEmitter()
+							logger.on 'error', (mensaje) ->
+							   console.log "Error: #{mensaje}"
+							logger.emit 'error', 'Ups'
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<img src="/img/dependencies.jpg">
+					</section>
+					<section>
+						<h2>NPM</h2>
+						<ul>
+							<li>Control de dependencias</li>
+							<li>Compartir módulos de forma sencilla</li>
+							<li>Permite instalación local a un proyecto</li>
+							<li><a href="https://npmjs.org/">Listado de modulos</a></li>
+						</ul>
+					</section>
+					<section>
+						<pre><code class="bash">
+							$ npm install -g 'coffee-script'
+							$ npm install 'underscore'
+						</code></pre>
+						<pre><code class="coffeescript">
+							underscore = require 'underscore'
+						</code></pre>
+					</section>
+					<section>
+						<h2>Package.json</h2>
+						<pre><code class="javascript">
+							{
+							   "name": "node-chat",
+							   "version": "0.0.1",
+							   "dependencies": {
+						      "express": "*",
+							      "connect-assets": "*",
+							      "coffee-script": "*",
+							      "ejs": "*",
+							      "socket.io": "*"
+							   }
+							}							
+						</code></pre>	
+						<pre><code class="bash">
+							$ npm install
+							$ ls node_modules/
+							coffee-script/  connect-assets/  ejs/  express/  socket.io/
+						</code></pre>					
+					</section>
+					<section>
+						<img src="/img/nodeEnd.jpg">
+					</section>					
+				</section>
+
+				<section>
+					<section>
+						<h2>Chat en Node.js</h2>
+						<a href="http://node-simple-chat.herokuapp.com/">Enlace a Heroku</a>
+					</section>
+					<section>
+						<pre><code class="coffeescript">
+							#Simple node chat using web sockets
+							PORT = process.env.PORT || 8080
+							express = require 'express'
+							socket = require 'socket.io'
+
+							app = express()
+
+							server = require('http').createServer app
+							io = socket.listen server						
+						</code></pre>
+						<pre><code class="coffeescript">
+							#App configuration
+							app.configure ->
+							   app.use require('connect-assets')()
+							   app.use express.static("#{__dirname}/public")
+							   app.set 'views', "#{__dirname}/views"
+							   app.set 'view engine', 'ejs'		
+							#Serve the chat page
+							app.get '/', (req,res) ->
+							   res.render 'index'
+							#Clients array
+							clients = []							   					
+						</code></pre>
+					</section>
+					<section>
+						<pre><code class="coffeescript">
+							#Configure events on the chat
+							io.sockets.on 'connection', (client) ->
+							   client.on 'message', (data) ->
+							      client.broadcast.emit 'message',data
+							   client.on 'join', (name) ->
+							      client.emit 'connected-users', clients
+							      client.set 'name', name
+							      clients.push(name)
+							      client.broadcast.emit 'joined', name
+							   client.on 'disconnect', () ->
+							      client.get 'name', (err,name) ->
+							         client.broadcast.emit 'logout', name
+							         clients.splice clients.indexOf(name),1
+							server.listen PORT
+							console.log "Server listening on port #{PORT}"										
+						</code></pre>					
+					</section>
+					<section>
+						<pre><code class="coffeescript">
+							server = io.connect window.location.hostname
+							server.on 'connect', (data) ->
+							   name = prompt "Input your name"
+							   server.emit 'join', name
+							   $('#settings h3').html name
+							   $('#settings h4').html "online"
+							server.on 'message', (data) ->
+							   element = $('&lt;div class="message"&gt;'+data+'&lt;/div&gt;')
+							   $('#log').append(element)			
+							   $('#log').animate...		
+
+							server.on 'logout', (name) ->
+							   $("#user-#{name}").remove()						
+						</code></pre>
+						<pre><code class="coffeescript">
+							server.on 'connected-users', (clients) ->
+							   for client in clients
+							      $('#connected-users').append...
+
+							server.on 'joined', (name) ->
+							   $('#connected-users').append...								
+						</code></pre>
+					</section>
+					<section>
+						<pre><code class="coffeescript">
+							$ ->
+								#Clear textarea
+								$('#send-message').val '' 
+								#When a message is sent
+								$('#chat_form').submit (e) ->
+								   e.preventDefault()
+								   send_message = $('#send-message')
+								   server.emit 'message', send_message.val()
+								   element = $('&lt;div&gt;'+send_message.val()+'&lt;/div&gt;')
+								   $('#log').append(element)			
+								   $('#log').animate...
+								   send_message.val ''						
+						</code></pre>
+						<pre><code class="coffeescript">
+								#When enter is pressed
+								$('#chat_form').on 'keydown', (key) ->
+								   if key.keyCode == 13
+								      $(this).submit()
+								      key.preventDefault()								
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<h2>Recursos y enlaces de interés</h2>
+					<ul>
+						<li><a href="http://www.nodejs.org">Página oficial de Node</a></li>
+						<li><a href="http://en.wikipedia.org/wiki/Node.js">Wikipedia</a></li>
+						<li><a href="http://www.codeschool.com/courses/real-time-web-with-nodejs">CodeSchool</a></li>
+						<li><a href="https://play.google.com/store/books/details/Mark_Bates_Programming_in_CoffeeScript?id=j0aYafxE2B4C">Programming in coffeescript</a></li>
+						<li>Funcionamiento y rendimiento. <a href="http://developer.yahoo.com/blogs/ydn/posts/2010/10/understanding-the-event-loops-and-writing-great-code-for-node-js-part-1/">Artículo 1</a> y <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Artículo 2</a></li>
+						<li><a href="http://howtonode.org/">How to node</a></li>
+						<li><a href="http://nodetuts.com/">Node tuts</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="/img/questions.jpg">
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="/lib/js/head.min.js"></script>
+		<script src="/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,17 @@
+div.images {
+	margin-top: 50px;
+	text-align: center;
+}
+
+div.images img {
+	float:left;
+	width: 180px;
+	border: none;
+	background: none;
+}
+
+div.left {
+	float: left;
+	display: inline-block;
+	width: 50%;
+}
