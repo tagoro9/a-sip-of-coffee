@@ -3,7 +3,7 @@ $(document).ready () ->
 	$('.start-show').click () ->
 		#Get url to load
 		url = $(this).data 'url'
-		window.location.href = "/presentation/#{url}"
+		window.location.href = "/presentation/#{url}/"
 
 	#Carousel elements
 	carouselElems = parseInt($('.carousel-elem').length)

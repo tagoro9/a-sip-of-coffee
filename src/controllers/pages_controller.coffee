@@ -1,5 +1,5 @@
 #Pages controller
-names = ['coffee', 'node']
+names = ['coffee', 'node','playing-with-node']
 
 #Index page with information about presentations
 app.get '/', (req,res) ->
