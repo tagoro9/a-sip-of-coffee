@@ -8,5 +8,170 @@
 </section>
 
 <section>
-	<img src="/img/questions.jpg">
+	<section>
+		<h2>Contenido</h2>
+		<ol>
+			<li class="fragment">Repaso</li>
+			<li class="fragment">Streams</li>
+			<li class="fragment">Módulos</li>
+			<li class="fragment">Express</li>
+			<li class="fragment">Redis</li>
+			<li class="fragment">Video streamer</li>
+			<li class="fragment">Recursos</li>
+		</ol>
+	</section>
+</section>
+
+<section>
+	<section><img src="/img/study.jpg"></section>
+	<section>
+		<p>
+			<a href="http://www.nodejs.org">Node.js</a> es un entorno de programación Javascript en el lado del servidor con un sistema de E/S dirigido por eventos.
+		</p>
+	</section>	
+	<section><img src="/img/eventLoop.jpg" style="width:50%;"></section>
+	<section>
+		<pre><code class="javascript">
+dbGet('id:sample', function(id) {
+    dbSet('user:' + id + ':email', 'foo@bar.com', function() {
+        dbSet('user:' + id + ':name', 'Foo', function() {
+            dbSet('user:' + id + ':lName', 'Bar', function() {
+                okWeAreDone();
+            });
+        });
+    });
+});			
+		</code></pre>
+	</section>
+</section>
+<section>
+	<section><img src="/img/stream.jpg" style="width:50%;"></section>
+	<section>
+		<p>
+			Un <b>stream</b> es un flujo constante de información que puede ser procesada o transferida según va llegando
+		</p>
+	</section>
+	<section>
+		<pre><code class="javascript">
+	http.createServer(function(req,res){
+		res.writeHead(200);
+		res.write("Comienzo");
+		setTimeout(function(){
+			res.write("Fin");
+			res.end();
+		},5000);
+	}).listen(8080);
+		</code></pre>
+	</section>
+	<section>
+		<img src="/img/readStream.PNG">
+		<pre><code class="javascript">
+	http.createServer(function(req,res){
+		res.writeHead(200);
+		req.on('data',function(chunk) {
+			res.write(chunk);
+		});
+		req.on('end',function(){
+			res.end();
+		})
+	}).listen(8080);
+		</code></pre>	
+		<pre><code class="javascript">
+	res.pipe(req); // cat chuchu.txt | grep tutu
+		</code></pre>				
+	</section>
+	<section>
+		<pre><code class="javascript">
+	http.createServer(function(req,res){
+		var file = fs.createWriteStream('file.txt');
+		req.pipe(file);
+		req.on('end',function(){
+			res.end('Subido!');
+		})
+	}).listen(8080);
+		</code></pre>		
+	</section>
+	<section>
+		<img src="/img/bottleneck.jpg">
+		<pre><code class="javascript">
+	readStream.on('data',function(chunk){
+		var buffer_good = writeStream.write(chunk);
+		if (!buffer_good) readStream.pause();
+	});
+	writeStream.on('drain',function(){
+		readStream.resume();
+	});
+		</code></pre>		
+	</section>
+</section>
+<section>
+	<section><img src="/img/modules.PNG"></section>
+	<section>
+		<pre><code class="javascript">
+	//hello.js
+	var hello = function () {
+		console.log("Hello");
+	}
+	exports = hello;
+		</code></pre>		
+		<pre><code class="javascript">
+	//main program
+	var hello = require('./hello');
+	hello();
+		</code></pre>				
+	</section>
+	<section>
+		<pre><code class="javascript">
+	foo = function(){...}
+	bar = function(){...}
+	chuchu = function(){...}
+	exports.foo = foo;
+	exports.bar = bar;
+		</code></pre>	
+		<pre><code class="javascript">
+	myMod = require('./my_fancy_module');
+	myMod.foo();
+	myMod.bar();
+		</code></pre>						
+	</section>	
+</section>
+<section>
+	<section><img src="/img/express.PNG"></section>
+	<section>
+		<pre><code class="javascript">
+	express = require('express');
+	app = express();
+	app.get('/',function(req, res){
+		res.render('index.ejs');
+	});
+	app.listen(8080);
+		</code></pre>		
+	</section>
+</section>
+<section>
+	<section><img src="/img/redis.PNG" style="background:#FFF;"></section>
+	<section>
+		<p>
+			<a href="http://redios.io">Redis</a> es un motor de base de datos en memoria basado en parejas clave-valor.
+			Admite distintos tipos de datos como cadenas, hashes, listas, conjuntos y conjuntos ordenados.
+		</p>
+	</section>
+</section>
+<section><img src="/img/handsOn.jpg"></section>
+<section>
+	<h2>Recursos y enlaces de interés</h2>
+	<ul>
+		<li><a href="http://www.nodejs.org">Página oficial de Node</a></li>
+		<li>Curso de <a href="http://www.codeschool.com/courses/real-time-web-with-nodejs">CodeSchool</a></li>	
+		<li><a href="http://howtonode.org/">How to node</a> y <a href="http://nodetuts.com/">Node tuts</a></li>
+		<li><a href="http://expressjs.com/">Página de Express</a></li>
+		<li><a href="http://openmymind.net/2012/1/23/The-Little-Redis-Book/">The Little Redis Book</a> y <a href="http://simonwillison.net/static/2010/redis-tutorial/">tutorial</a> sobre Redis</li>
+		<li><a href="http://videojs.com/">Video.js</a></li>
+		<li><a href="https://delog.wordpress.com/2011/04/25/stream-webm-file-to-chrome-using-node-js/">Stream WebM to Chrome using Node.js</a></li>
+		<li><a href="http://www.stackoverflow.com">Stack overflow</a></li>
+		<li>Código de <a href="https://github.com/tagoro9/nodeTube">nodeTube</a> y código de la <a href="https://github.com/tagoro9/a-sip-of-coffee">presentación</a></li>
+	</ul>
+</section>
+<section>
+	<img src="/img/questions2.jpg">
 </section>
