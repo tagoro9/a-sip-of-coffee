@@ -8,7 +8,7 @@ $(document).ready () ->
 	#Carousel elements
 	carouselElems = parseInt($('.carousel-elem').length)
 	maxLenght = -1040 * (carouselElems - 1)
-
+###
 	$('.carousel-controls > a').click (event) ->
 		event.preventDefault()
 		posX = $('#carousel-container').position().left
@@ -17,4 +17,4 @@ $(document).ready () ->
 			when "forward" then dir = '-'
 		$('#carousel-container').transition x: "#{dir}=1040", 600 if (posX != 0 && dir != '-') || (posX != maxLenght && dir != '+')
 		#alert $('#carousel-container').position().left
-
+###
