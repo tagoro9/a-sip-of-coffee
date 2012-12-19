@@ -1,84 +1,12 @@
-<!doctype html>
-<html lang="es">
+<% layout('node-layout') %>
+<section>
+	<h1>Node.js</h1>
+	<h3>Server side JS</h3>
+	<p>
+		<small>Sistemas y tecnologías web <a href="http://www.twitter.com/vivictormora">Victor Mora</a></small>
+	</p>
+</section>
 
-	<head>
-		<meta charset="utf-8">
-
-		<title>Node.js</title>
-
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-		<%- css('reveal.min.css') %> 
-		<%- css('theme/default.css') %> 
-
-		<!-- For syntax highlighting -->
-		<%- css('../lib/css/zenburn.css') %> 
-
-		<%- css('nodePres.css') %>
-
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
-
-		<!--[if lt IE 9]>
-		<script src="/lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
-
-	<body>
-
-		<div class="reveal">
-
-			<!-- Aqui vienen los slides -->
-			<div class="slides">
-
-				<section>
-					<h1>Node.js</h1>
-					<h3>Server side JS</h3>
-					<p>
-						<small>Sistemas y tecnologías web <a href="http://www.twitter.com/vivictormora">Victor Mora</a></small>
-					</p>
-				</section>
-
-				<section>
-					<img src="/img/questions.jpg">
-				</section>
-
-			</div>
-
-		</div>
-
-		<script src="/lib/js/head.min.js"></script>
-		<script src="/js/reveal.min.js"></script>
-
-		<script>
-
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
-
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: '/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: '/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: '/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: '/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: '/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: '/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
-
-		</script>
-
-	</body>
-</html>
+<section>
+	<img src="/img/questions.jpg">
+</section>
